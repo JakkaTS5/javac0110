@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Pham Quoc Cuong demo</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/css/bootstrap-grid.min.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/css/bootstrap-utilities.min.css}" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1 class="text-center" th:text="${title}">Demo Spring boot with Thymeleaf</h1>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <a th:href="@{/students}"><button type="button" class="btn btn-success">Hiển thị danh sách học viên</button></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h3>10 học viên mới nhất</h3>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                Bảng dánh sách 10 học viên mới nhất
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h3>10 giảng viên mới nhất</h3>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                Bảng dánh sách 10 giảng viên mới nhất
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
