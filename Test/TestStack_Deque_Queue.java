@@ -10,9 +10,9 @@ public class TestStack_Deque_Queue {
         Stack<Integer> integerStack = new Stack<>();
         System.out.println("Stack");
         integerStack.push(2);
-        integerStack.push(4);
         integerStack.add(6);
         integerStack.add(8);
+        integerStack.push(4);
         System.out.println(integerStack);
         System.out.println(integerStack.size());
         System.out.println("Stack ~ take and delete: " + integerStack.pop());
@@ -22,13 +22,15 @@ public class TestStack_Deque_Queue {
         System.out.println(integerStack);
         System.out.println("-------------------------------------------------");
 
-        Deque<Integer> integerDeque = new ArrayDeque<>();
+        Deque<Integer> integerDeque = new ArrayDeque<>();//kho choi
         // Deque<Integer> integerDeque = new Linkedlist<>();
         System.out.println("Deque");
-        integerDeque.offer(3);
-        integerDeque.push(5);
-        integerDeque.add(7);
         integerDeque.add(9);
+        integerDeque.offer(1);
+        integerDeque.push(5);
+        integerDeque.push(7);
+        integerDeque.offer(3);
+        integerDeque.add(11);
         System.out.println(integerDeque);
         System.out.println(integerDeque.size());
         System.out.println("Deque ~ take and delete: " + integerDeque.pop());
@@ -41,11 +43,11 @@ public class TestStack_Deque_Queue {
         Queue<Integer> integerQueue1 = new LinkedList<>();
         //Queue<Integer> integerQueue3 = new ArrayDeque<>();
         System.out.println("Queue Linked");
-        integerQueue1.offer(1);//false if null
-        integerQueue1.offer(5);
         integerQueue1.add(10);
         integerQueue1.add(15);//exception
         integerQueue1.add(20);
+        integerQueue1.offer(1);//false if null
+        integerQueue1.offer(5);
         System.out.println(integerQueue1);
         System.out.println(integerQueue1.size());
         System.out.println("Queue ~ take and delete: " + integerQueue1.remove());

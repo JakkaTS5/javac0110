@@ -104,16 +104,19 @@ public class JavaDatabase {
             e.printStackTrace();
             System.out.println("Error Loading Fail" + e);
         }
+//        String url = "jdbc:mariadb://localhost:3306/bai2"
+//        String username = "root";
+//        String password = "50111993";
         String url = properties.getProperty("url");
         String username = properties.getProperty("username");
         String password = properties.getProperty("password");
 
-        JavaDatabase javaDatabase = new JavaDatabase();
+
 
         try {
             Connection connection = DriverManager.getConnection(url, username, password);
             System.out.println("Database Connected!");
-
+            JavaDatabase javaDatabase = new JavaDatabase();
 //            javaDatabase.sqlStatement(connection);
             javaDatabase.sqlPreparedStatement(connection);
             connection.close();

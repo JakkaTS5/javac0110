@@ -1,10 +1,10 @@
-package it.sontt.Lesson25;
+package it.sonlesson25.lesson25_0;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class Lesson25ApplicationTests {
+class Lesson250ApplicationTests {
 
 	@Test
 	void contextLoads() {
