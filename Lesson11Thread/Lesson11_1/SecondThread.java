@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class SecondThread extends Thread {
     public SecondThread(String name) {
-        super(name);
+        super.setName(name);
     }
 
     @Override
