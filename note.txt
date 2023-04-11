@@ -1,0 +1,14 @@
+Query Creation JPA (repository)
+https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-methods.query-creation 
+
+github
+https://github.com/JakkaTS5
+
+gitlab
+https://gitlab.com/JakkaTS5
+
+leetcode
+https://leetcode.com/thaison93/
+
+progate
+https://prog-8.com/dashboard
