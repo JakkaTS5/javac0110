@@ -90,7 +90,7 @@ public class JavaDatabase {
     }
 
     public static void main(String[] args) {
-        System.out.println("java Data First");
+//        System.out.println("java Data First");
         Properties properties = new Properties();
         try (FileInputStream inputStream = new FileInputStream("app.config")) {
             properties.load(inputStream);
@@ -117,9 +117,10 @@ public class JavaDatabase {
             Connection connection = DriverManager.getConnection(url, username, password);
             System.out.println("Database Connected!");
             JavaDatabase javaDatabase = new JavaDatabase();
+//            chay theo 2 dang ket noi SqlSatement va PreparedStatement
 //            javaDatabase.sqlStatement(connection);
-            javaDatabase.sqlPreparedStatement(connection);
-            connection.close();
+//            javaDatabase.sqlPreparedStatement(connection);
+//            connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Database Connect Fail!");

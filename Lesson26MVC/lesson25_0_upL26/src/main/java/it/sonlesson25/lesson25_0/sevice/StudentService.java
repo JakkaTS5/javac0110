@@ -2,12 +2,16 @@ package it.sonlesson25.lesson25_0.sevice;
 
 import it.sonlesson25.lesson25_0.model.HocVien;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.ConnectException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.sql.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Properties;
 
 public class StudentService {
     private static StudentService INSTANCE = null;
@@ -25,15 +29,26 @@ public class StudentService {
     }
 
     public void connectionDatabase() {
+        Properties properties = new Properties();
+        try {
+            FileInputStream inputStream = new FileInputStream("H:\\Java\\JavaC0110\\Lesson26MVC\\lesson25_0_upL26\\src\\main\\resources\\app.config");
+            properties.load(inputStream);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
+        String url = properties.getProperty("url");
+        String username = properties.getProperty("username");
+        String password = properties.getProperty("password");
         try {
             Class.forName("org.mariadb.jdbc.Driver");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
             System.out.println("Error Loading Driver!");
         }
-        String url = "jdbc:mariadb://localhost:3306/bai2";
-        String username = "root";
-        String password = "50111993";
         try {
             this.connection = DriverManager.getConnection(url, username, password);
             System.out.println("Database Connected!!");
