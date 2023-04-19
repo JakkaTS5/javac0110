@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-grid.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-utilities.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-utilities.min.css}" />
+</head>
+<body class="container">
+    <div class="row">
+        <div class="col-10">
+            <h1 class="text-center" th:text="${@environment.getProperty('template.html.title')}"></h1>
+            <p th:text="${text}"></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-10">
+            <a th:href="@{/students}"><button class="btn btn-sm btn-success">Show all stutent</button></a>
+        </div>
+    </div>
+</body>
+</html>

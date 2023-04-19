@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-grid.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-utilities.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-utilities.min.css}" />
+</head>
+<body class="container">
+    <div class="row">
+        <div class="col-10">
+            <h1>Danh sách học viên</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-10">
+            <a th:href="@{/student/add}"><button class="btn btn-sm btn-success">Add</button></a>
+        </div>
+    </div>
+    <form action="#" th:action="@{/students}" method="GET">
+        <div class="row">
+            <div class="col">
+                <input type="text" class="form-control" placeholder="search" name="search">
+            </div>
+            <div class="col">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </form>
+    <div class="row">
+        <div class="col-10">
+            <table class="table table-sm table-hover">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col" style="width: 10%">ID</th>
+                    <th scope="col" style="width: 20%">NAME</th>
+                    <th scope="col" style="width: 50%">DEPARTMENT</th>
+                    <th scope="col">ACTION</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="student: ${students}">
+                    <td scope="col" th:text="${student.mahv}" />
+                    <td scope="col" th:text="${student.ho}" />
+                    <td scope="col" th:text="${student.ten}" />
+                    <td scope="col">
+                        <a th:href="@{/student/edit/{mahv}(mahv = ${student.mahv})}"><button class="btn btn-sm btn-warning">Edit</button></a>
+                        <a th:href="@{/student/delete/{mahv}(mahv = ${student.mahv})}"><button class="btn btn-sm btn-danger">Delete</button></a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

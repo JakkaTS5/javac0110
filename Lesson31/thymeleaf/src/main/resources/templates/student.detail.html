@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-grid.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-utilities.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-utilities.min.css}" />
+</head>
+<body class="container">
+<div class="row">
+    <div class="col-10">
+        <h1>Thêm mới học viên</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-10">
+        <form action="#" th:action="@{/student/add}" th:object="${student}" method="post">
+            <div class="mb-3">
+                <label for="ho">HO:</label>
+                <input type="text" class="form-control" id="ho" th:field="*{ho}" />
+            </div>
+            <div class="mb-3">
+                <label for="ten">TEN:</label>
+                <input type="text" class="form-control" id="ten" th:field="*{ten}" />
+            </div>
+            <div class="mb-3">
+                <label for="ngsinh">NGSINH:</label>
+                <input type="text" class="form-control" id="ngsinh" th:field="*{ngaysinh}" th:value="${#dates.format(student.ngaysinh, 'dd/MM/yyyy')}" />
+            </div>
+            <div class="mb-3">
+                <label for="gioitinh">GIOITINH:</label>
+                <select th:field="*{gioitinh}" id="gioitinh" class="form-control">
+                    <option value="">-- Select gender --</option>
+                    <option th:value="Nam" th:text="Nam">Nam</option>
+                    <option th:value="Nu" th:text="Nữ">Nữ</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="noisinh">NOISINH:</label>
+                <input type="text" class="form-control" id="noisinh" th:field="*{noisinh}" />
+            </div>
+            <div class="mb-3">
+                <label for="malop">MALOP:</label>
+                <input type="text" class="form-control" id="malop" th:field="*{malop}" />
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
