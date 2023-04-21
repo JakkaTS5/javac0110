@@ -1,5 +1,6 @@
 package it.sonlesson25.lesson25_0.controller;
 
+import it.sonlesson25.lesson25_0.dto.HocVienDto;
 import it.sonlesson25.lesson25_0.model.HocVien;
 import it.sonlesson25.lesson25_0.sevice.GiaoVienService;
 import it.sonlesson25.lesson25_0.sevice.StudentService;
@@ -31,7 +32,7 @@ public class HelloController {
     ) {
         StudentService studentService = StudentService.getINSTANCE();// new
         HocVien student = studentService.getStudentById(studentId);
-        System.out.println(studentId);
+//        System.out.println(studentId);//sever se hien ma studentid
         return new ResponseEntity<>(student, HttpStatus.OK);
     }
 //    @GetMapping(value = "/students/{student_id}")
@@ -58,5 +59,13 @@ public class HelloController {
         GiaoVienService giaoVienService = GiaoVienService.getINSTANCE();
         String giaovien = giaoVienService.getGiaoVienById(giaoVienId);
         return giaovien;
+    }
+    @PostMapping(value = "/students")
+    public ResponseEntity<HocVien> postStudentAction(
+            @RequestBody HocVienDto hocVienDto){
+        StudentService studentService = StudentService.getINSTANCE();// new
+        HocVien student = studentService.addStudent(hocVienDto);
+
+        return new ResponseEntity<>(student,HttpStatus.OK);
     }
 }

@@ -1,5 +1,6 @@
 package it.sonlesson25.lesson25_0.sevice;
 
+import it.sonlesson25.lesson25_0.dto.HocVienDto;
 import it.sonlesson25.lesson25_0.model.HocVien;
 
 import java.io.FileInputStream;
@@ -7,11 +8,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.ConnectException;
 import java.sql.*;
-import java.util.ArrayList;
+import java.util.*;
 import java.sql.Date;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Properties;
 
 public class StudentService {
     private static StudentService INSTANCE = null;
@@ -84,7 +82,8 @@ public class StudentService {
 
         return output;
     }
-    public HocVien getStudentById(String studentId){
+
+    public HocVien getStudentById(String studentId) {
         HocVien output = null;
         String selectQuery = "SELECT * FROM HOCVIEN WHERE MAHV LIKE ?";
         try {
@@ -103,12 +102,47 @@ public class StudentService {
                 //in
                 String format = "%-5s %-15s %-15s %-10s %-15s %-15s %-5s";
                 System.out.println(String.format(format, mahv, ho, ten, ngaysinh, gioitinh, noisinh, malop));
-                output = new HocVien(mahv,ho,ten, ngaysinh,gioitinh,noisinh,malop);
+                output = new HocVien(mahv, ho, ten, ngaysinh, gioitinh, noisinh, malop);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return output;
+    }
+
+    public HocVien addStudent(HocVienDto hocVienDto) {
+        //tao ra MAHV
+        UUID uuid = UUID.randomUUID();
+        System.out.println("MAHV: " + uuid);
+        String mahv = "K" + uuid.toString().substring(0, 4);
+        //tao doi tuong hoc vien insert vao database
+        HocVien hocVien = new HocVien(
+                mahv,
+                hocVienDto.getHo(),
+                hocVienDto.getTen(),
+                hocVienDto.getNgaysinh(),
+                hocVienDto.getGioitinh(),
+                hocVienDto.getNoisinh(),
+                hocVienDto.getMalop()
+        );
+        // insert query vao database
+        String sql = "INSERT INTO HOCVIEN(MAHV, HO, TEN, NGSINH, GIOITINH, NOISINH, MALOP) VALUE (?, ?, ?, ?, ?, ?, ?)";
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = this.connection.prepareStatement(sql);
+            preparedStatement.setString(1, hocVien.getMahv());
+            preparedStatement.setString(2, hocVien.getHo());
+            preparedStatement.setString(3, hocVien.getTen());
+            preparedStatement.setDate(4, new Date(hocVien.getNgaysinh().getTime()));
+            preparedStatement.setString(5, hocVien.getGioitinh());
+            preparedStatement.setString(6, hocVien.getNoisinh());
+            preparedStatement.setString(7, hocVien.getMalop());
+            int iResult = preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return hocVien;
     }
 
 }
