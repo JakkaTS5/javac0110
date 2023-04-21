@@ -133,7 +133,7 @@ public class StudentService {
             preparedStatement.setString(1, hocVien.getMahv());
             preparedStatement.setString(2, hocVien.getHo());
             preparedStatement.setString(3, hocVien.getTen());
-            preparedStatement.setDate(4, new Date(hocVien.getNgaysinh().getTime()));
+            preparedStatement.setDate(4, new Date(hocVien.getNgaysinh().getTime()));//chuyen sang date
             preparedStatement.setString(5, hocVien.getGioitinh());
             preparedStatement.setString(6, hocVien.getNoisinh());
             preparedStatement.setString(7, hocVien.getMalop());
