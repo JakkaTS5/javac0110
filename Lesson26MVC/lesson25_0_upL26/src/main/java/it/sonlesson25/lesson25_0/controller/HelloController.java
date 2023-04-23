@@ -7,6 +7,8 @@ import it.sonlesson25.lesson25_0.sevice.GiaoVienService;
 import it.sonlesson25.lesson25_0.sevice.StudentService;
 import lombok.Value;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
@@ -66,12 +68,13 @@ public class HelloController {
 
     @GetMapping(value = "/giaovien/{giaovien_id}")
     public String getGiaoVienById(
-            @PathVariable(value = "giaovien_id") String giaoVienId
+            @PathVariable(value ="giaovien_id") String giaovienId
     ) {
         GiaoVienService giaoVienService = GiaoVienService.getINSTANCE();
-        String giaovien = giaoVienService.getGiaoVienById(giaoVienId);
+        String giaovien = giaoVienService.getGiaoVienById(giaovienId);
         return giaovien;
     }
+
 
     @PostMapping(value = "/students")
     public ResponseEntity<HocVien> postStudentAction(
@@ -87,7 +90,7 @@ public class HelloController {
             @PathVariable(value = "student_id") String studentId,
             @RequestBody HocVienDto hocVienDto
     ) {
-        //todo update thong tin
+        //todo update info
         return new ResponseEntity<>(null, HttpStatus.OK);
 
     }
@@ -107,7 +110,15 @@ public class HelloController {
             @RequestParam("file") MultipartFile file) {
         fileService.saveFile(file);
         return new ResponseEntity<>("uploaded !", HttpStatus.OK);
+    }
 
+    @GetMapping(value = "/download/{fileName}")
+    public ResponseEntity<?> downloadFile(
+            @PathVariable String fileName
+    ) {
+        Resource file = fileService.downloadFile(fileName);
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; fileName =\"" + file.getFilename() + "\"").body(file);
     }
 }
 
