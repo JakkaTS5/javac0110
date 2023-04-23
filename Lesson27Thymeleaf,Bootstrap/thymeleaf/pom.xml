@@ -5,16 +5,16 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.7.11-SNAPSHOT</version>
+		<version>3.0.6</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>io.cuongpq.spring</groupId>
+	<groupId>it.sonLesson27_0</groupId>
 	<artifactId>thymeleaf</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>thymeleaf</name>
-	<description>Demo project for Spring Boot with Thymeleaf</description>
+	<description>Demo project for Spring Boot with thymeleaf</description>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>17</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -27,10 +27,9 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
+			<groupId>com.mysql</groupId>
+			<artifactId>mysql-connector-j</artifactId>
 			<scope>runtime</scope>
-			<optional>true</optional>
 		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -42,12 +41,11 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<version>42.5.4</version>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.30</version>
 		</dependency>
 
 	</dependencies>
@@ -68,41 +66,5 @@
 			</plugin>
 		</plugins>
 	</build>
-	<repositories>
-		<repository>
-			<id>spring-milestones</id>
-			<name>Spring Milestones</name>
-			<url>https://repo.spring.io/milestone</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-		<repository>
-			<id>spring-snapshots</id>
-			<name>Spring Snapshots</name>
-			<url>https://repo.spring.io/snapshot</url>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-		</repository>
-	</repositories>
-	<pluginRepositories>
-		<pluginRepository>
-			<id>spring-milestones</id>
-			<name>Spring Milestones</name>
-			<url>https://repo.spring.io/milestone</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</pluginRepository>
-		<pluginRepository>
-			<id>spring-snapshots</id>
-			<name>Spring Snapshots</name>
-			<url>https://repo.spring.io/snapshot</url>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-		</pluginRepository>
-	</pluginRepositories>
 
 </project>

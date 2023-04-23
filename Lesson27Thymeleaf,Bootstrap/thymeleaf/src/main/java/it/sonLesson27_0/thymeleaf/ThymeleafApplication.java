@@ -1,4 +1,4 @@
-package io.cuongpq.spring.thymeleaf;
+package it.sonLesson27_0.thymeleaf;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
