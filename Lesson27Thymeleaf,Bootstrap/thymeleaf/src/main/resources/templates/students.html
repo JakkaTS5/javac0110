@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Students List</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/css/bootstrap-grid.min.css}" ref="stylesheet" type="text/css">
+    <link th:href="@{/css/bootstrap-utilities.min.css}" ref="stylesheet" type="text/css">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1 class="text-center">Students List</h1>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <a th:href="@{/students/add}" ><button type="button" class="btn btn-primary">Add New Student</button></a>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">MAHV</th>
+                    <th scope="col">HO</th>
+                    <th scope="col">TEN</th>
+                    <th scope="col">NGAY SINH</th>
+                    <th scope="col">GIOI TINH</th>
+                    <th scope="col">NOI SINH</th>
+                    <th scope="col">MA LOP</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="student : ${students}">
+                    <td th:text="${student.mahv}">MAHV</td>
+                    <td th:text="${student.ho}">HO</td>
+                    <td th:text="${student.ten}">TEN</td>
+                    <td th:text="${student.ngaysinh}">NGAY SINH</td>
+                    <td th:text="${student.gioitinh}">GIOI TINH</td>
+                    <td th:text="${student.noisinh}">NOI SINH</td>
+                    <td th:text="${student.malop}">MA LOP</td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>
