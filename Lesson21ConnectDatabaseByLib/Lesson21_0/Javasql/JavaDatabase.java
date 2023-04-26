@@ -65,8 +65,8 @@ public class JavaDatabase {
                     "VALUES(?, ?, ?, ?, ?, ?, ?)";
             preparedStatement = connection.prepareStatement(insertQuery);
             preparedStatement.setString(1, "HV02");
-            preparedStatement.setString(2, "Nguyen Ngo");
-            preparedStatement.setString(3, "Chieu Thu");
+            preparedStatement.setString(2, "Nguyen Ngoc");
+            preparedStatement.setString(3, "Thu");
             preparedStatement.setDate(4, java.sql.Date.valueOf("1999-08-05"));
             preparedStatement.setString(5, "Nu");
             preparedStatement.setString(6, "TPHCM");

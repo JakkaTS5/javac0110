@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Teachers List</title>
+  <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" type="text/css">
+  <link th:href="@{/css/bootstrap-grid.min.css}" ref="stylesheet" type="text/css">
+  <link th:href="@{/css/bootstrap-utilities.min.css}" ref="stylesheet" type="text/css">
+</head>
+<body>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1 class="text-center">Teachers List</h1>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <a th:href="@{/teachers/add}" ><button type="button" class="btn btn-primary">Add New Teacher</button></a>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <table class="table table-hover">
+        <thead>
+        <tr>
+          <th scope="col">TeacherID</th>
+          <th scope="col">Name</th>
+          <th scope="col">Degree</th>
+          <th scope="col">Sex</th>
+          <th scope="col">Academic Rank</th>
+          <th scope="col">Birthday</th>
+          <th scope="col">JoinDate</th>
+          <th scope="col">Coefficient</th>
+          <th scope="col">Salary</th>
+          <th scope="col">Code</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="teacher : ${teachersHT}">
+          <td th:text="${teacher.magv}"></td>
+          <td th:text="${teacher.hoten}"></td>
+          <td th:text="${teacher.hocvi}"></td>
+          <td th:text="${teacher.gioitinh}"></td>
+          <td th:text="${teacher.hocham}"></td>
+          <td th:text="${teacher.ngaysinh}"></td>
+          <td th:text="${teacher.ngvl}"></td>
+          <td th:text="${teacher.heso}"></td>
+          <td th:text="${teacher.mucluong}"></td>
+          <td th:text="${teacher.makhoa}"></td>
+        </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</body>
+</html>

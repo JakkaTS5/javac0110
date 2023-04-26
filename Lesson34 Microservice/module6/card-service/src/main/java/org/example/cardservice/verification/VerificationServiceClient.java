@@ -30,7 +30,6 @@ public class VerificationServiceClient {
 				.fromHttpUrl("http://fraud-verifier/cards/verify")
 				.queryParam("uuid", verificationApplication.getUserId())
 				.queryParam("cardCapacity", verificationApplication.getCardCapacity());
-		return restTemplate.getForEntity(uriComponentsBuilder.toUriString(),
-				VerificationResult.class);
+		return restTemplate.getForEntity(uriComponentsBuilder.toUriString(), VerificationResult.class);
 	}
 }

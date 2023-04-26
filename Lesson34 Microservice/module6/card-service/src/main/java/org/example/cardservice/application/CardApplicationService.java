@@ -27,14 +27,12 @@ class CardApplicationService {
 
 	public CardApplication registerApplication(CardApplicationDto applicationDTO) {
 		User user = userServiceClient.registerUser(applicationDTO.user).getBody();
-		CardApplication application = new CardApplication(UUID.randomUUID(),
-				user, applicationDTO.cardCapacity);
+		CardApplication application = new CardApplication(UUID.randomUUID(), user, applicationDTO.cardCapacity);
 		if (User.Status.OK != user.getStatus()) {
 			application.setApplicationResult(ApplicationResult.rejected());
 			return application;
 	}
-		VerificationResult verificationResult = verificationServiceClient
-				.verify(new VerificationApplication(application.getUuid(),
+		VerificationResult verificationResult = verificationServiceClient.verify(new VerificationApplication(application.getUuid(),
 						application.getCardCapacity())).getBody();
 		if (!VerificationResult.Status.VERIFICATION_PASSED
 				.equals(verificationResult.status)) {
