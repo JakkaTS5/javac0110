@@ -11,14 +11,14 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <h1 class="text-left">ADD NEW STUDENT</h1>
+            <h1 class="text-left">EDIT STUDENT</h1>
         </div>
     </div>
 </div>
 <div class="container">
     <div class="row">
         <div class="col-10">
-            <form th:action="@{/student/add}" method="post" th:object="${student}">
+            <form th:action="@{/student/edit/{mahv}(mahv=${student_id})}" method="post" th:object="${student}">
                 <div class="mb-3">
                     <label for="ho">LAST NAME:</label>
                     <input type="text" class="form-control" id="ho" aria-describedby="" th:field="*{ho}">

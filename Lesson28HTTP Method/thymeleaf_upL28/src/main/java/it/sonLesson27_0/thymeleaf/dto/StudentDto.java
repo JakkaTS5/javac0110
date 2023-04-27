@@ -4,7 +4,6 @@ import lombok.Data;
 
 @Data
 public class StudentDto {
-    private String mahv ="";
     private String ho ="";
     private String ten ="";
     private String ngaysinh ="";
@@ -15,8 +14,7 @@ public class StudentDto {
     public StudentDto(){
 
     }
-    public StudentDto(String mahv, String ho, String ten, String ngaysinh, String gioitinh, String noisinh, String malop) {
-        this.mahv = mahv;
+    public StudentDto(String ho, String ten, String ngaysinh, String gioitinh, String noisinh, String malop) {
         this.ho = ho;
         this.ten = ten;
         this.ngaysinh = ngaysinh;
@@ -24,6 +22,5 @@ public class StudentDto {
         this.noisinh = noisinh;
         this.malop = malop;
     }
-
 
 }

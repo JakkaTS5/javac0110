@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -42,13 +44,42 @@ public class StudentController {
 
     @GetMapping(value = "/student/edit/{student_id}")
     public String editStudent(
-            @PathVariable("student_id") String studetnId,
+            @PathVariable("student_id") String studentId,
             Model model
     ) {
-        Student student = studentService.getStudentById(studetnId);
+        Student student = studentService.getStudentById(studentId);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
+        String ngaysinh = format.format(student.getNgaysinh());
+
         StudentDto studentDto = new StudentDto(
+                student.getHo(),
+                student.getTen(),
+                ngaysinh,
+                student.getGioitinh(),
+                student.getNoisinh(),
+                student.getMalop()
         );
-        model.addAttribute("student",studentDto);
+
+        model.addAttribute("student", studentDto);
+        model.addAttribute("student_id",studentId);
         return "student.edit";
+    }
+
+    @PostMapping(value = "/student/edit/{student_id}", consumes = "application/x-www-form-urlencoded")
+    public String updateStudent(
+            @PathVariable("student_id") String studentId,
+            StudentDto studentDto
+    ) {
+        boolean result = studentService.updateStudentById(studentId, studentDto);
+
+        return "redirect:/students";
+    }
+    @GetMapping(value = "/student/delete/{student_id}")
+    public String deleteStudent(
+            @PathVariable(value = "student_id") String studentId
+    ){
+        boolean result = studentService.deleteStudentById(studentId);
+
+        return "redirect:/students";
     }
 }

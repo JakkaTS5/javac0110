@@ -14,9 +14,9 @@ import java.util.UUID;
 
 @Service
 public class StudentService {
-    DatabaseService databaseService = DatabaseService.getINTANCE();
-    Connection connection = databaseService.getConnection();
     public List<Student> getStudentsList() {
+        DatabaseService databaseService = DatabaseService.getINTANCE();
+        Connection connection = databaseService.getConnection();
         List<Student> output = new ArrayList<>();
         String selectQuery = "SELECT * FROM HOCVIEN";
         try {
@@ -43,10 +43,11 @@ public class StudentService {
     }
     public Student addStudent(StudentDto studentDto){
         DatabaseService databaseService = DatabaseService.getINTANCE();
-        connection = databaseService.getConnection();
+        Connection connection = databaseService.getConnection();
         UUID uuid = UUID.randomUUID();
         System.out.println("MAHV: " + uuid);
         String mahv = "K" + uuid.toString().substring(0, 4);
+
         SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
         Date ngaysinh = null;
         try {
@@ -68,7 +69,7 @@ public class StudentService {
         String sql = "INSERT INTO HOCVIEN(MAHV, HO, TEN, NGSINH, GIOITINH, NOISINH, MALOP) VALUE (?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement preparedStatement = null;
         try {
-            preparedStatement = this.connection.prepareStatement(sql);
+            preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, student.getMahv());
             preparedStatement.setString(2, student.getHo());
             preparedStatement.setString(3, student.getTen());
@@ -84,17 +85,19 @@ public class StudentService {
         return student;
     }
     public Student getStudentById(String studentId) {
+        DatabaseService databaseService = DatabaseService.getINTANCE();
+        Connection connection = databaseService.getConnection();
         Student output = null;
-        String selectQuery = "SELECT * FROM HOCVIEN WHERE MAHV LIKE ?";
+        String selectQuery = "SELECT * FROM HOCVIEN WHERE MAHV = ?";
         try {
-            PreparedStatement preparedStatement = this.connection.prepareStatement(selectQuery);
+            PreparedStatement preparedStatement = connection.prepareStatement(selectQuery);
             preparedStatement.setString(1, studentId);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 String mahv = rs.getString("MAHV");
                 String ho = rs.getString("HO");
                 String ten = rs.getString("TEN");
-                java.sql.Date ngaysinh = rs.getDate("NGSINH");
+                Date ngaysinh = rs.getDate("NGSINH");
                 String gioitinh = rs.getString("GIOITINH");
                 String noisinh = rs.getString("NOISINH");
                 String malop = rs.getString("MALOP");
@@ -108,5 +111,52 @@ public class StudentService {
             throw new RuntimeException(e);
         }
         return output;
+    }
+    public boolean updateStudentById(String studentId, StudentDto studentDto){
+        DatabaseService databaseService = DatabaseService.getINTANCE();
+        Connection connection = databaseService.getConnection();
+
+        SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
+        Date ngaysinh = null;
+        try {
+            ngaysinh =format.parse(studentDto.getNgaysinh());
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+        //tao doi tuong hoc vien insert vao database
+
+        // insert query vao database
+        String sql = "UPDATE HOCVIEN SET HO = ?, TEN = ?, NGSINH = ?, GIOITINH = ?, NOISINH = ?,MALOP = ? WHERE MAHV = ?";
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, studentDto.getHo());
+            preparedStatement.setString(2, studentDto.getTen());
+            preparedStatement.setDate(3, new java.sql.Date(ngaysinh.getTime()));
+            preparedStatement.setString(4, studentDto.getGioitinh());
+            preparedStatement.setString(5, studentDto.getNoisinh());
+            preparedStatement.setString(6, studentDto.getMalop());
+            preparedStatement.setString(7, studentId);
+            int iResult = preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+    public boolean deleteStudentById (String studentId){
+        DatabaseService databaseService = DatabaseService.getINTANCE();
+        Connection connection = databaseService.getConnection();
+        String query = "DELETE FROM HOCVIEN WHERE MAHV = ?";
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, studentId);
+            int iResult = preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 }
