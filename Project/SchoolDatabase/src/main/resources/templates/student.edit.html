@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Students List</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/css/bootstrap-grid.min.css}" ref="stylesheet" type="text/css">
+    <link th:href="@{/css/bootstrap-utilities.min.css}" ref="stylesheet" type="text/css">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1 class="text-left">EDIT STUDENT</h1>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-10">
+            <form th:action="@{/student/edit/{mahv}(mahv=${student_id})}" method="post" th:object="${student}">
+                <div class="mb-3">
+                    <label for="ho">LAST NAME:</label>
+                    <input type="text" class="form-control" id="ho" aria-describedby="" th:field="*{ho}">
+                </div>
+                <div class="mb-3">
+                    <label for="ten">FIRST NAME:</label>
+                    <input type="text" class="form-control" id="ten" aria-describedby="" th:field="*{ten}">
+                </div>
+                <div class="mb-3">
+                    <label for="ngaysinh">BIRTHDAY:</label>
+                    <input type="text" class="form-control" id="ngaysinh" aria-describedby="" th:field="*{ngaysinh}">
+                </div>
+                <div class="mb-3">
+                    <label for="gioitinh" class="form-label">SEX:</label>
+                    <select th:field="*{gioitinh}" id="gioitinh">
+                        <option value="">---CHOOSE---</option>
+                        <option th:value="Nam" th:text="MALE">MALE</option>
+                        <option th:value="Nu" th:text="FEMALE">FEMALE</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="noisinh">ADDRESS:</label>
+                    <input type="text" class="form-control" id="noisinh" aria-describedby="" th:field="*{noisinh}">
+                </div>
+                <div class="mb-3">
+                    <label for="malop">CLASS ID:</label>
+                    <input type="text" class="form-control" id="malop" aria-describedby="" th:field="*{malop}">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
